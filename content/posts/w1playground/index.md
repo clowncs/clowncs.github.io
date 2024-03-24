@@ -103,11 +103,11 @@ if ( optval >= 0 )
 
 Trước khi debug thì kiểm tra xem có những chương trình ebpf nào đang chạy bằng ``sudo bpftool prog``
 
-![image](https://github.com/ClownCS/clowncs.github.io/assets/90112096/2b6c9c8c-1413-4d84-89f3-89867671c6d3)
+![image](https://github.com/ClownCS/clowncs.github.io/assets/90112096/c6d7793b-4fa1-4eac-9af2-f9d68d8e5cc0)
 
 Sau đó bắt đầu debug, ta thấy được có thêm một chương trình ``id : 14``, đó là chương trình ta đang cần tìm, dump disassemble code của chương trình nó bằng ``sudo bpftool prog dump xlated id 14``
 
-![image](https://github.com/ClownCS/clowncs.github.io/assets/90112096/3010e2d0-8027-49df-9157-7da7fba65ef8)
+![image](https://github.com/ClownCS/clowncs.github.io/assets/90112096/83f82599-98f5-4b5c-8dcb-d4952a0c35b2)
 
 ```asm
 0: (bf) r9 = r1
@@ -263,11 +263,11 @@ Sau đó bắt đầu debug, ta thấy được có thêm một chương trình 
 
 Có thể thấy nó có liên quan tới ``map[id:2]``, ta có thể xem giá trị nó là gì bằng ``sudo bpftool map dump id 2``, tuy nhiên lúc này tất cả đều là 0. Lý do là ta phải debug qua hàm ``bpf_map_update_elem()``, sau đó ta thấy nó load 4 kí tự vào chương trình.
 
-![image](https://github.com/ClownCS/clowncs.github.io/assets/90112096/ec1d4aae-eafe-4f40-8f1f-588c7a775b90)
+![image](https://github.com/ClownCS/clowncs.github.io/assets/90112096/c4cb193f-a93c-4c9f-aebd-7b77a810b16a)
 
 Sau đó, nó được lưu lại mảng ``input`` sau khi thực hiện chương trình.
 
-![image](https://github.com/ClownCS/clowncs.github.io/assets/90112096/982a50b7-676f-449e-8483-315a4e981910)
+![image](https://github.com/ClownCS/clowncs.github.io/assets/90112096/da9c06b2-0c62-4b3b-b7b8-4209ce15e955)
 
 Vậy thì lúc này ta đã hiểu sơ nó thực hiện nhận và cần biết nó làm gì đó để có thể kiếm được flag. Quay lại với đống disassmble instructions, ta lấy ra được và thực hiện reverse. Từ dòng đầu tới vòng 60 ta thấy chương trình nhận 4 giá trị từ chương trình gốc sau đó lưu vào stack với offset là 20->32. Sau đó thực hiện biến đổi và lưu lại 4 giá trị đó vào stack với offset từ 36->48 và trả về chương trình gốc. Vậy thì cụ thể nó đã biến đổi ra sao, ta sẽ bắt đầu từ dòng 65 đổ đi. Đây là note của mình cách nó implement
 
