@@ -19,7 +19,7 @@ Solutions for all reverse challenges in W1
 
 <!--more-->
 
-# Reversing
+# RE
 ## SUDOKU
 A small game for warm-up.
 
