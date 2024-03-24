@@ -18,7 +18,7 @@ toc:
 Solutions for some reverse challenges in HTB
 <!--more-->
 
-# REVERSING
+# RE
 Giải này mình giải được 7 câu nhưng mình sẽ trình bày các câu medium, hard nên mọi người thông cảm. 
 
 ## FollowThePath
