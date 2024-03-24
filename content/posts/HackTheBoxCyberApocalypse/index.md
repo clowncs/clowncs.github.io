@@ -120,7 +120,7 @@ print(bytes(flag))
 ## QuickScan
 Bài này ta được nhận 128 file ELF và nhiệm vụ là phải gửi lại đúng giá trị mảng được load trong mỗi chương trình đấy
 
-![image](https://github.com/ClownCS/clowncs.github.io/assets/90112096/fa808f14-e095-42ca-8bc3-e124560db948)
+![image](https://github.com/ClownCS/clowncs.github.io/assets/90112096/0e851518-0f68-4592-8f90-7ae747531301)
 
 Thế thì thử decode base64 và load vào ida xem nó làm gì nhé. Sau vài lần thử thì mình rút ra được như sau dù nó thay đổi ra sao hay thêm vài thứ khác vào thì nó vẫn luôn làm câu lệnh mình note dưới đây
 
@@ -153,7 +153,7 @@ LOAD:0000000008048289                 xchg    eax, ecx
 ```
 Thế thì lúc này phải làm sao để có thể vừa down file về vừa decode vừa lôi được mảng đó ra. Mình để ý rằng khi nó thực hiện câu lệnh nó luôn bắt đầu theo chuỗi ``[0x48, 0x83, 0xEC, 0x18, 0x48, 0x8D, 0x35]``
 
-![image](https://github.com/ClownCS/clowncs.github.io/assets/90112096/59d44377-d824-4c2b-9698-41ed0444bae1)
+![image](https://github.com/ClownCS/clowncs.github.io/assets/90112096/c36e83a0-d9a3-4b60-bb66-1376a8efc2d6)
 
 Vậy thì bước đầu ta xác định được câu lệnh đó nằm ở đâu dựa theo chuỗi trên, vậy giá trị mảng sẽ nằm ở đâu. Sau khi thử nghiệm vài lần mình thấy được index của mảng sẽ bắt đầu từ vị trí tìm được chuỗi kia + 7 (tương ứng độ dài của chuỗi) + 4(độ dài của 4 bytes tiếp theo) + với giá trị của 4 bytes tiếp theo sau khi convert thành 1 byte. Script solve của mình:
 
