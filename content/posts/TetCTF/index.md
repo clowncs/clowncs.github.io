@@ -21,7 +21,7 @@ Solutions for some reverse challenges in TetCTF
 
 Giải TetCTF là một giải CTF do người Việt đứng ra tổ chức với mức rate khá cao gần ~80. Thoạt đầu mình nghĩ sẽ không có cơ hội giải được. Tuy nhiên vì tết ở quê quá chán vẫn phải ngồi try hard và may mắn solve được hai câu.
 
-![image](https://github.com/ClownCS/clowncs.github.io/assets/90112096/288c7969-6b26-440b-ab5d-d3dc1ca8d426)
+![image](https://github.com/ClownCS/clowncs.github.io/assets/90112096/f1491155-3a75-4b6c-886b-5dd72121aeed)
 
 
 # RE
