@@ -1,8 +1,8 @@
 ---
 weight: 1
 title: "PicoCTF 2024"
-date: 2024-03-16T14:30:00+07:00
-lastmod: 2024-03-16T14:30:00+07:00
+date: 2024-03-26T14:30:00+07:00
+lastmod: 2024-03-26T14:30:00+07:00
 draft: false
 author: "ClownCS"
 authorLink: "https://clowncs.github.io"
