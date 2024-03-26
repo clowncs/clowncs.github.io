@@ -4,7 +4,7 @@ baseURL = "https://clowncs.github.io/"
 theme = "LoveIt"
 
 # website title
-title = "ClownCS aka Peter"
+title = "ClownCS's zone"
 
 # language code ["en", "zh-CN", "fr", "pl", ...]
 languageCode = "en"
