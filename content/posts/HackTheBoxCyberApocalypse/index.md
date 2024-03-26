@@ -7,7 +7,7 @@ draft: false
 author: "ClownCS"
 authorLink: "https://clowncs.github.io"
 description: "Solutions for some reverse challenges in HTB"
-tags: ["RE", "HTB", "2024"]
+tags: ["RE", "2024", "Wargame"]
 categories: ["Writeups"]
 
 lightgallery: true
