@@ -7,7 +7,7 @@ draft: false
 author: "ClownCS"
 authorLink: "https://clowncs.github.io"
 description: "Solutions for all reverse challenges in W1"
-tags: ["RE", "W1","2024"]
+tags: ["RE", "Wargame","2024"]
 categories: ["Writeups"]
 
 lightgallery: true
