@@ -18,7 +18,7 @@ A student and a CTF player who is interested in Reverse Engineering, playing for
 ---
 
 - 📖 Studying in University of Information Technology - VNUHCM
-- 🗺 Living in Viet Nam
+- 🗺 Living in Thu Duc, Ho Chi Minh City
 - ☕ Addicted to coffee
 
 ---
