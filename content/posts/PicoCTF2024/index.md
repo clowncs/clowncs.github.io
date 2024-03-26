@@ -7,7 +7,7 @@ draft: false
 author: "ClownCS"
 authorLink: "https://clowncs.github.io"
 description: "Solutions for all reverse challenges in PicoCTF"
-tags: ["RE", "Pico", "2024", "Weekly"]
+tags: ["RE", "Wargame", "2024", "Weekly"]
 categories: ["Writeups"]
 
 lightgallery: true
