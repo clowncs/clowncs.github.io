@@ -23,17 +23,17 @@ Solutions for all reverse challenges in PicoCTF
 
 Giải này mình khá may mắn vì có thể hoàn thành nó trong 2 tiếng (~~nếu author không ra đề lỗi thì có thể sớm hơn~~)
 
-![image](https://hackmd.io/_uploads/H1YcDT6CT.png)
+![image](https://github.com/ClownCS/clowncs.github.io/assets/90112096/2c4fc4bc-8a4b-4405-9b00-2a74f97c38bd)
 
 ## packer
 
 Như tên đề bài thì mình nghĩ file đã được packed nên mình dùng ``Detect it easy`` để check thử
 
-![image](https://hackmd.io/_uploads/S1anFppCp.png)
+![image](https://github.com/ClownCS/clowncs.github.io/assets/90112096/ee99a607-76be-43b5-961d-b8431fa2195e)
 
 Như bạn thấy thì nó được packed bởi UPX 3.95. Để unpack mình dùng [UPX](https://github.com/upx/upx/releases/tag/v3.96) và lệnh ``.\upx.exe -d out``
 
-![image](https://hackmd.io/_uploads/SJC25pTCT.png)
+![image](https://github.com/ClownCS/clowncs.github.io/assets/90112096/5637a74a-180c-4b86-983d-0d0397b41421)
 
 Mở file bằng ida ta thấy được flag là một chuỗi hex ``7069636f4354467b5539585f556e5034636b314e365f42316e34526933535f65313930633366337d`` decode ta được:
 
@@ -60,7 +60,7 @@ std::string::operator+=(v22, v29);
 
 Mình đặt breakpoint ở cuối chương trình và lấy flag ra
 
-![image](https://hackmd.io/_uploads/HkaJ2ppAa.png)
+![image](https://github.com/ClownCS/clowncs.github.io/assets/90112096/12b1cfe1-ce7e-420e-a96a-40cb561a57d2)
 
 Flag: ***picoCTF{wELF_d0N3_mate_97750d5f}***
 
@@ -75,7 +75,7 @@ Flag: ***picoCTF{wELF_d0N3_mate_97750d5f}***
 ```
 Để bypass đoạn này thì chỉ cần debug và setip tới nhánh đúng.
 
-![image](https://hackmd.io/_uploads/BktzTppRp.png)
+![image](https://github.com/ClownCS/clowncs.github.io/assets/90112096/c9089eba-0089-4b24-bf7a-7099c277defe)
 
 Flag: ***picoCTF{d3bug_f0r_th3_Win_0x100_e6c390e2}***
 
@@ -181,7 +181,7 @@ if ( pidcheck() || IsDebuggerPresent() )
   }
 ```
 
-![image](https://hackmd.io/_uploads/rky9fCpRT.png)
+![image](https://github.com/ClownCS/clowncs.github.io/assets/90112096/79744ce2-1b85-4b56-b493-7c104939de73)
 
 Flag: ***picoCTF{0x200_debug_f0r_Win_603b1bdf}***
 
@@ -189,7 +189,7 @@ Flag: ***picoCTF{0x200_debug_f0r_Win_603b1bdf}***
 
 Bài cuối này sau khi thử bằng ``Detect it easy`` thì mình phát hiện nó được packed bằng ``UPX 4.21``
 
-![image](https://hackmd.io/_uploads/HJWSEAaC6.png)
+![image](https://github.com/ClownCS/clowncs.github.io/assets/90112096/f78bd2dd-1976-4a2d-a6df-fda78fcb60dd)
 
 Sau khi unpacked nó load vào ida và đọc thử. Sau khi đọc sơ thì mình thấy chương trình này có hai đoạn check antidebug.
 
@@ -234,11 +234,11 @@ Sleep(0x1388u);
 
 Cách làm vẫn như cũ mình sẽ debug và setip qua nhánh đúng riêng hàm ``while`` mình sẽ setip để không nhảy vào hàm while đó.
 
-![Untitled](https://hackmd.io/_uploads/Bkw2tATC6.png)
+![image](https://github.com/ClownCS/clowncs.github.io/assets/90112096/3a38d8df-17a3-461a-829d-592520d83bf5)
 
 Sau đó flag sẽ nhả ra
 
-![asd](https://hackmd.io/_uploads/r13W9RTCp.png)
+![image](https://github.com/ClownCS/clowncs.github.io/assets/90112096/57957c06-c373-42f8-b1d3-7954e7c349a1)
 
 Flag: ***picoCTF{Wind0ws_antid3bg_0x300_daad7155}***
 
