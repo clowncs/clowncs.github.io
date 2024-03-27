@@ -21,9 +21,9 @@ Solutions for all reverse challenges in PicoCTF
 
 # RE
 
-Giải này mình khá may mắn vì có thể hoàn thành nó trong 2 tiếng (~~nếu author không ra đề lỗi thì có thể sớm hơn~~)
+Giải này mình khá may mắn vì có thể hoàn thành nó trong 2 tiếng (~~nếu author không ra đề lỗi thì có thể sớm hơn~~). Tuy nhiên điều quan trọng nhất đó là đây là giải ``Wannagame Weekly`` đầu tiên trong năm nay và cũng có thể xem là giải debut của team mình dù đã hoạt động từ lâu. Dù không thể giải quyết hết tất cả các challenge nhưng KHÔNG QUAN TRỌNG 💣💥💥, bọn mình cũng đã cố gắng hết sức.
 
-![image](https://github.com/ClownCS/clowncs.github.io/assets/90112096/2c4fc4bc-8a4b-4405-9b00-2a74f97c38bd)
+![image](https://github.com/ClownCS/clowncs.github.io/assets/90112096/fe917d74-e966-437c-8a25-e59fc0e43769)
 
 ## packer
 
@@ -40,7 +40,7 @@ Mở file bằng ida ta thấy được flag là một chuỗi hex ``7069636f435
 Flag: ***picoCTF{U9X_UnP4ck1N6_B1n4Ri3S_e190c3f3}***
 
 ## FactCheck
-Bài này là bài author ra đề sai khiến mình bị chậm trễ clear =))). Đây là một bài rev C++ cũng khá dễ đọc nó chỉ thực hiện vài phép so sánh.
+Bài này ban đầu bị lỗi đề tuy nhiên lúc sau thì đã được fix. Đây là một bài rev C++ cũng khá dễ đọc nó chỉ thực hiện vài phép so sánh.
 
 ```c++
 if ( *(char *)std::string::operator[](v24, 0LL) <= 65 )
@@ -66,7 +66,7 @@ Flag: ***picoCTF{wELF_d0N3_mate_97750d5f}***
 
 ## WinAntiDbg0x100
 
-Đây là một bài antidebug nên việc tìm ra các chỗ check debug là điều quan trọng. Đọc sơ chương trình mà xem phần ``Imports``, mình nhận ra chỉ có một hàm check duy nhất là ``IsDebuggerPresent``
+Đây là một bài antidebug nên việc tìm ra các chỗ check debug là điều quan trọng. Đọc sơ chương trình và xem phần ``Imports``, mình nhận ra chỉ có một hàm check duy nhất là ``IsDebuggerPresent``
 ```C
  if ( IsDebuggerPresent() )
       {
@@ -159,7 +159,7 @@ Mình thấy chương trình gồm có hai thứ đáng quan tâm thứ nhất l
 input_list = [4, 54, 41, 0, 112, 32, 25, 49, 33, 3, 0, 0, 57, 32, 108, 23, 48, 4, 9, 70, 7, 110, 36, 8, 108, 7, 49, 10, 4, 86, 43, 59, 124, 86, 0, 69, 59, 47, 93, 78]
 ```
 
-Và mảng thứ hai là một chuỗi ``t_Jo3``, có thể thấy độ dài mảng chia hết cho độ dài chuỗi nên mình mạnh dạn xor luôn =))). 
+Và mảng thứ hai là một chuỗi ``t_Jo3``, có thể thấy độ dài mảng chia hết cho độ dài chuỗi nên mình mạnh dạn xor luôn. 
 
 ```python
 input_list = [4, 54, 41, 0, 112, 32, 25, 49, 33, 3, 0, 0, 57, 32, 108, 23, 48, 4, 9, 70, 7, 110, 36, 8, 108, 7, 49, 10, 4, 86, 43, 59, 124, 86, 0, 69, 59, 47, 93, 78]
@@ -242,4 +242,4 @@ Sau đó flag sẽ nhả ra
 
 Flag: ***picoCTF{Wind0ws_antid3bg_0x300_daad7155}***
 
-> Giải này mình còn làm được vài bài pwn tuy nhiên thì do mình không thực sự hiểu rõ bản chất nên mình không muốn trình bày wu ở đây. Cảm ơn mọi người đã dành thời gian đọc blog <3
+> Check out my teammate blogs if you would like: [d0qbu](https://hackmd.io/@d0qbu/Hk-NSOWkR), [s1gm4 🦆](https://hackmd.io/9WtB5vYjQOC42biMGkGrEg). Thanks for reading !
