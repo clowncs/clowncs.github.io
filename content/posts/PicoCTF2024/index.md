@@ -242,4 +242,4 @@ Sau đó flag sẽ nhả ra
 
 Flag: ***picoCTF{Wind0ws_antid3bg_0x300_daad7155}***
 
-> Check out my teammate blogs if you would like: [d0qbu](https://hackmd.io/@d0qbu/Hk-NSOWkR), [s1gm4 🦆](https://hackmd.io/9WtB5vYjQOC42biMGkGrEg). Thanks for reading !
+> Check out my teammate blogs if you would like: [d0qbu](https://dad0qbu.github.io/blogs/CTF/2024/picoctf-2024.html), [s1gm4 🦆](https://s19ma.github.io/posts/2024/picoCTF_2024.html), [s0ulk1n9](https://hackmd.io/@n3g4tee/H16kbFm0T). Thanks for reading !
