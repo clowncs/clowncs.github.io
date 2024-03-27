@@ -191,7 +191,7 @@ Bài cuối này sau khi thử bằng ``Detect it easy`` thì mình phát hiện
 
 ![image](https://github.com/ClownCS/clowncs.github.io/assets/90112096/f78bd2dd-1976-4a2d-a6df-fda78fcb60dd)
 
-Sau khi unpacked nó load vào ida và đọc thử. Sau khi đọc sơ thì mình thấy chương trình này có hai đoạn check antidebug.
+Sau khi unpacked nó load vào ida và đọc thử thì mình thấy chương trình này có hai đoạn antidebug.
 
 
 ```C
