@@ -7,7 +7,7 @@ draft: false
 author: "ClownCS"
 authorLink: "https://clowncs.github.io"
 description: "Solutions for some reverse challenges in amateursCTF 2024"
-tags: ["RE", "amateursCTF", "2024"]
+tags: ["RE", "2024"]
 categories: ["Writeups"]
 
 lightgallery: true
