@@ -695,20 +695,20 @@ As you can see, it is so difficult to understand, so that I researched more abou
 
 First, it will receive out input and convert to int and save in memo 
 
-# add pic 
+![image](https://github.com/ClownCS/clowncs.github.io/assets/90112096/e947e814-172b-4f8e-bb22-912bccf87077)
 
 After that, it will call ``five nights as freddy`` function, and do some random shuffle and save it again in memo.
 
-# add pic 
+![image](https://github.com/ClownCS/clowncs.github.io/assets/90112096/733cdd40-3a40-4a0b-bed3-c2ae7f152b8a)
 
 Next, it will xor the shuffled array with these bytes 
 > \xd5d\xf0x0?\x86\xfc\xb6\xab\x03\x96RY*)\xca`\xda\xb7\x01\xb9j\xc8\\\xe7bH\x0f\x8c\xb4=2#HsO\x0ea\xc9\xdbO\xc8d\xf7\x96\r\x90\xae\x99\xbe\x18\xbd\xcd\xa0\xdd\xe4J\x84
 
-# add pic 
+![image](https://github.com/ClownCS/clowncs.github.io/assets/90112096/4b1fbb9e-f4ed-4554-99f9-e14b7126180b)
 
 Finally, it will compare with array in stack.
 
-# add pic 
+![image](https://github.com/ClownCS/clowncs.github.io/assets/90112096/1f45766f-6020-4b67-9bb2-0a04059b3e8d)
 
 Now it is easy to reverse. My final script:
 
