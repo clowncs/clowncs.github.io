@@ -19,9 +19,11 @@ Solutions for some reverse challenges in amateursCTF 2024
 <!--more-->
 # RE
 Reverse challenges in this event are fun so i want to keep some of them on my blog.
+![image](https://github.com/ClownCS/clowncs.github.io/assets/90112096/144ed917-d08a-4ada-975b-e7e9c7024748)
+
 ## typo
 {{< admonition >}}
-154 solves / 251 points
+166 solves / 243 points
 
 can you make sure i didn't make a typo?
 {{< /admonition >}}
@@ -241,7 +243,7 @@ Flag: ***amateursCTF{r/programminghorror/comments/18x7vk9/}***
 
 ## revtale-1
 {{< admonition >}}
-23 solves / 419 points
+28 solves / 406 points
 
 Once upon a time...there was a binary with a flag.
 {{< /admonition >}}
@@ -340,7 +342,7 @@ Flag: ***amateursCTF{ggez_w3_l0v3_vm_b33f}***
 
 ## dill-with-it
 {{< admonition >}}
-20 solves / 427 points
+27 solves / 408 points
 
 Crisp green Larry lies Bathes, brining in vinegar Dill pickle delight
 {{< /admonition >}}
@@ -724,3 +726,649 @@ for i in range(len(orin_inndex)):
 ```
 
 Flag: ***amateursCTF{p1ckL3-is_not_the_goat_l4rrY_is_m0R3_\:goat:ed}***
+
+## gogogaga
+{{< admonition >}}
+17 solves / 436 points
+
+"wow its my favorite language to rev" - nobody
+{{< /admonition >}}
+
+First time, I could solve golang reverse challenge. Btw, this challenge makes me so crazy. It took me nearly 12 hours to solve (~~because of my skill issue~~). Download the binary and try to run it, it simply takes the key and if it is correct, we will get the flag.
+
+Open bin with IDA and start analyzing, golang is so shit when it is decompiled :+1:. At first, it will take our input into ``main_checkKey`` function. In that function has more 5 ``main_checkKey_func1`` to ``main_checkKey_func5`` 💀. The nightmare has come, but we need to do this.
+
+```C=
+// main.checkKey
+bool __golang main_checkKey(string key)
+{
+  __int64 v1; // r14
+  __int64 v2; // rcx
+  __int64 v4; // rdx
+  __int64 v5; // rcx
+  unsigned __int64 j; // rbx
+  runtime_funcval *v7; // rax
+  __int64 v8; // rcx
+  runtime_hchan *v9; // rdx
+  _QWORD *v10; // r11
+  runtime_funcval *v11; // rax
+  __int64 v12; // rcx
+  runtime_hchan *v13; // rdx
+  _QWORD *v14; // r11
+  runtime_funcval *v15; // rax
+  __int64 v16; // rcx
+  runtime_hchan *v17; // rdx
+  _QWORD *v18; // r11
+  runtime_funcval *v19; // rax
+  __int64 v20; // rcx
+  runtime_hchan *v21; // rdx
+  _QWORD *v22; // r11
+  runtime_funcval *v23; // rax
+  __int64 v24; // rcx
+  runtime_hchan *v25; // rdx
+  _QWORD *v26; // r11
+  __int64 i; // rax
+  uint8 v28; // si
+  uint8 v29; // si
+  bool elem; // [rsp+1h] [rbp-31h] BYREF
+  __int64 v31; // [rsp+2h] [rbp-30h]
+  uintptr v32; // [rsp+Ah] [rbp-28h]
+  __int64 *array; // [rsp+12h] [rbp-20h]
+  runtime_hchan *c; // [rsp+1Ah] [rbp-18h]
+  __int64 v35; // [rsp+22h] [rbp-10h]
+  void *retaddr; // [rsp+32h] [rbp+0h] BYREF
+  string v37; // 0:rcx.8,8:rdi.8
+  _slice_string v38; // 0:rax.8,8:rbx.8,16:rcx.8
+
+  if ( (unsigned __int64)&retaddr <= *(_QWORD *)(v1 + 16) )
+  {
+    runtime_morestack_noctxt();
+    JUMPOUT(0x495FC5LL);
+  }
+  v37.str = (uint8 *)&runtime_gcbits__ptr_;
+  v37.len = 1LL;
+  v38 = strings_genSplit(key, v37, 0LL, -1LL);
+  if ( v38.len != 5 )
+    return 0;
+  v2 = 0LL;
+LABEL_6:
+  if ( v2 >= 5 )
+  {
+    array = (__int64 *)v38.array;
+    c = runtime_makechan((internal_abi_ChanType *)&RTYPE_chan_bool_0, 5LL);
+    v32 = array[1];
+    v35 = *array;
+    v7 = (runtime_funcval *)runtime_newobject((internal_abi_Type *)&stru_4A7560);
+    v7->fn = (uintptr)main_checkKey_func1;
+    v7[2].fn = v32;
+    if ( *(_DWORD *)&runtime_writeBarrier.enabled )
+    {
+      runtime_gcWriteBarrier2();
+      v8 = v35;
+      *v10 = v35;
+      v9 = c;
+      v10[1] = c;
+    }
+    else
+    {
+      v8 = v35;
+      v9 = c;
+    }
+    v7[1].fn = v8;
+    v7[3].fn = (uintptr)v9;
+    runtime_newproc(v7);
+    v32 = array[3];
+    v35 = array[2];
+    v11 = (runtime_funcval *)runtime_newobject((internal_abi_Type *)&stru_4A7600);
+    v11->fn = (uintptr)main_checkKey_func2;
+    v11[2].fn = v32;
+    if ( *(_DWORD *)&runtime_writeBarrier.enabled )
+    {
+      runtime_gcWriteBarrier2();
+      v12 = v35;
+      *v14 = v35;
+      v13 = c;
+      v14[1] = c;
+    }
+    else
+    {
+      v12 = v35;
+      v13 = c;
+    }
+    v11[1].fn = v12;
+    v11[3].fn = (uintptr)v13;
+    runtime_newproc(v11);
+    v32 = array[5];
+    v35 = array[4];
+    v15 = (runtime_funcval *)runtime_newobject((internal_abi_Type *)&stru_4A76A0);
+    v15->fn = (uintptr)main_checkKey_func3;
+    v15[2].fn = v32;
+    if ( *(_DWORD *)&runtime_writeBarrier.enabled )
+    {
+      runtime_gcWriteBarrier2();
+      v16 = v35;
+      *v18 = v35;
+      v17 = c;
+      v18[1] = c;
+    }
+    else
+    {
+      v16 = v35;
+      v17 = c;
+    }
+    v15[1].fn = v16;
+    v15[3].fn = (uintptr)v17;
+    runtime_newproc(v15);
+    v32 = array[7];
+    v35 = array[6];
+    v19 = (runtime_funcval *)runtime_newobject((internal_abi_Type *)&stru_4A7740);
+    v19->fn = (uintptr)main_checkKey_func4;
+    v19[2].fn = v32;
+    if ( *(_DWORD *)&runtime_writeBarrier.enabled )
+    {
+      runtime_gcWriteBarrier2();
+      v20 = v35;
+      *v22 = v35;
+      v21 = c;
+      v22[1] = c;
+    }
+    else
+    {
+      v20 = v35;
+      v21 = c;
+    }
+    v19[1].fn = v20;
+    v19[3].fn = (uintptr)v21;
+    runtime_newproc(v19);
+    v32 = array[9];
+    v35 = array[8];
+    v23 = (runtime_funcval *)runtime_newobject((internal_abi_Type *)&stru_4A77E0);
+    v23->fn = (uintptr)main_checkKey_func5;
+    v23[2].fn = v32;
+    if ( *(_DWORD *)&runtime_writeBarrier.enabled )
+    {
+      runtime_gcWriteBarrier2();
+      v24 = v35;
+      *v26 = v35;
+      v25 = c;
+      v26[1] = c;
+    }
+    else
+    {
+      v24 = v35;
+      v25 = c;
+    }
+    v23[1].fn = v24;
+    v23[3].fn = (uintptr)v25;
+    runtime_newproc(v23);
+    for ( i = 0LL; i < 5; i = v31 + 1 )
+    {
+      v31 = i;
+      elem = 0;
+      runtime_chanrecv1(c, &elem);
+      if ( !elem )
+        return 0;
+    }
+    return 1;
+  }
+  else
+  {
+    v4 = v2;
+    v5 = v2;
+    if ( v38.array[v5].len == 5 )
+    {
+      for ( j = 0LL; ; ++j )
+      {
+        if ( (__int64)j >= 5 )
+        {
+          v2 = v4 + 1;
+          goto LABEL_6;
+        }
+        if ( j >= v38.array[v5].len )
+          runtime_panicIndex();
+        v28 = v38.array[v5].str[j];
+        elem = v28 < 0x41u;
+        if ( v28 >= 0x41u )
+        {
+          if ( j >= v38.array[v5].len )
+            runtime_panicIndex();
+          elem = v38.array[v5].str[j] > 0x5Au;
+        }
+        if ( elem )
+        {
+          if ( j >= v38.array[v5].len )
+            runtime_panicIndex();
+          v29 = v38.array[v5].str[j];
+          elem = v29 < 0x30u;
+          if ( v29 >= 0x30u )
+          {
+            if ( j >= v38.array[v5].len )
+              runtime_panicIndex();
+            elem = v38.array[v5].str[j] > 0x39u;
+          }
+          if ( elem )
+            break;
+        }
+      }
+      return 0;
+    }
+    else
+    {
+      return 0;
+    }
+  }
+}
+```
+
+Before talking about 5 check functions, the most important thing we need to consider is ``strings_genSplit``. During the contest, I didn't notice this so it took a long time to solve. About that function, it simply counts how many **-** in our string and separates it into 5 parts corresponding to 5 check functions. So we need 4 **-** in our string, and after that, it will go down and check each input character if they are in the range ``0->9`` and ``A-Z``. If two conditions are correct, it will go to the main function check.
+
+```C=
+v38 = strings_genSplit(key, v37, 0LL, -1LL);
+if ( v38.len != 5 )
+return 0;
+v2 = 0LL;
+LABEL_6:
+
+...
+
+else
+  {
+    v4 = v2;
+    v5 = v2;
+    if ( v38.array[v5].len == 5 )
+    {
+      for ( j = 0LL; ; ++j )
+      {
+        if ( (__int64)j >= 5 )
+        {
+          v2 = v4 + 1;
+          goto LABEL_6;
+        }
+        if ( j >= v38.array[v5].len )
+          runtime_panicIndex();
+        v28 = v38.array[v5].str[j];
+        elem = v28 < 0x41u;
+        if ( v28 >= 0x41u )
+        {
+          if ( j >= v38.array[v5].len )
+            runtime_panicIndex();
+          elem = v38.array[v5].str[j] > 0x5Au;
+        }
+        if ( elem )
+        {
+          if ( j >= v38.array[v5].len )
+            runtime_panicIndex();
+          v29 = v38.array[v5].str[j];
+          elem = v29 < 0x30u;
+          if ( v29 >= 0x30u )
+          {
+            if ( j >= v38.array[v5].len )
+              runtime_panicIndex();
+            elem = v38.array[v5].str[j] > 0x39u;
+          }
+          if ( elem )
+            break;
+        }
+      }
+      return 0;
+    }
+    else
+    {
+      return 0;
+    }
+  }
+```
+``main_checkKey_func1`` is just compare the string with base64 encoding, we can easily get the first string is **LARRY**
+
+
+```C=
+c = (runtime_hchan *)check;
+  len = key.len;
+  v10.str = key.str;
+  v10.len = len;
+  v11 = runtime_stringtoslicebyte((runtime_tmpBuf *)&elem[1], v10);
+  cap = v11.cap;
+  v11.cap = v11.len;
+  v11.len = (int)v11.array;
+  v5 = encoding_base64__ptr_Encoding_EncodeToString(encoding_base64_StdEncoding, *(_slice_uint8 *)&v11.len);
+  v6 = v5.len == 8 && *(_QWORD *)v5.str == 0x3D6B6C5553464554LL;
+  elem[0] = v6;
+  runtime_chansend1(c, elem);
+```
+
+``main_checkKey_func2`` will check if our input is in range ``0->9`` and does basic compare.
+
+```C=
+while ( v3 < 5 )
+{
+if ( key.len <= (unsigned __int64)v3 )
+  runtime_panicIndex();
+v6 = key.str[v3];
+elem[0] = v6 < '0';
+if ( v6 >= '0' )
+  elem[0] = key.str[v3] > '9';
+if ( elem[0] )
+{
+  runtime_chansend1((runtime_hchan *)check, &runtime_egcbss);
+  return;
+}
+v5 = (unsigned __int8)(key.str[v3++] - 48);
+v4 += v5;
+}
+elem[0] = v4 == 35;
+runtime_chansend1((runtime_hchan *)check, elem);
+```
+
+Part 2:
+
+```C=
+#include <stdio.h>
+int main(){
+    for (int i = 48; i < 58; i++){
+        for (int j = 48; j < 58; j++){
+            for (int x = 48; x < 58; x++){
+                for (int y = 48; y < 58; y++){
+                    for (int z = 48; z < 58; z++){
+                    int tmp = (i - 48) + (j - 48) + (x - 48) + (y - 48) + (z - 48);
+                    if (tmp == 35){
+                        printf("%c%c%c%c%c :%d\n",i,j,x,y,z,tmp);
+                }
+              }
+            }
+        }
+      }
+    }
+}
+```
+I will take **77777** for part 2. Next will be ``main_checkKey_func3``, this function is similar with part 2 but the most different is we need to find a string that each character is different from each one. This is because of ``runtime_mapassign()``
+
+```C=
+while ( v6 < 5 )
+  {
+    if ( len <= v6 )
+      runtime_panicIndex();
+    v7 = v5[v6];
+    if ( (unsigned __int8)v7 < 0x41u
+      || (unsigned __int8)v7 > 0x5Au
+      || (v10 = v6, v9 = v7, *(_BYTE *)runtime_mapaccess1((internal_abi_MapType *)&RTYPE_map_uint8_bool_0, &h, &v9)) )
+    {
+      runtime_chansend1(c, &runtime_egcbss);
+      return;
+    }
+    v9 = keya[v10];
+    *(_BYTE *)runtime_mapassign((internal_abi_MapType *)&RTYPE_map_uint8_bool_0, &h, &v9) = 1;
+    v6 = v10 + 1;
+    len = key.len;
+    v5 = keya;
+  }
+  v18.str = v5;
+  v18.len = len;
+  v19 = runtime_stringtoslicebyte((runtime_tmpBuf *)buf, v18);
+  for ( i = 0LL; i < 5; ++i )
+  {
+    if ( v19.len <= (unsigned __int64)i )
+      runtime_panicIndex();
+    v19.array[i] ^= 0x60;
+  }
+  v17 = runtime_slicebytetostring((runtime_tmpBuf *)v12, v19.array, v19.len);
+  main_Tuesday(v17, (chan_bool)c);
+```
+
+Part 3:
+
+```C=
+#include <stdio.h>
+
+int check_diff(int i, int j, int x, int y, int z) {
+    int values[5] = {i, j, x, y, z};
+    for (int idx1 = 0; idx1 < 5; idx1++) {
+        for (int idx2 = idx1 + 1; idx2 < 5; idx2++) {
+            if (values[idx1] == values[idx2]) {
+                return 0;
+            }
+        }
+    }
+    return 1;
+}
+int main(){
+    for (int i = 80; i < 90; i++){
+        for (int j = 80; j < 90; j++){
+            for (int x = 80; x < 90; x++){
+                for (int y = 80; y < 90; y++){
+                    for (int z = 80; z < 90; z++){
+                    int tmp = ((i ^ 0x60) - 48) + ((j ^ 0x60) - 48) + ((x ^ 0x60) - 48) + ((y ^ 0x60) - 48) + ((z ^ 0x60) - 48);
+                    if (tmp == 35 && check_diff(i,j,x,y,z)){
+                        printf("%c%c%c%c%c :%d\n",i,j,x,y,z,tmp);
+                    }
+              }
+            }
+        }
+      }
+    }
+}
+```
+I will choose **WVYUX**. ``main_checkKey_func4`` is the tricky one, if you just read the pseudocode, you will not be able to solve this. This is the 
+pseudocode:
+
+```C=
+v4 = 0LL;
+  v5 = 0LL;
+  v6 = 0LL;
+  while ( v4 < 5 )
+  {
+    if ( v15.len <= (unsigned __int64)v4 )
+      runtime_panicIndex();
+    for ( i = v15.array[v4]; (_BYTE)i; i = v10 )
+    {
+      v8 = v5-- + 1;
+      v9 = v6-- + 1;
+      v10 = i;
+      if ( (i & 1) != 0 )
+        v5 = v8;
+      if ( (i & 2) != 0 )
+        v6 = v9;
+      LOBYTE(v10) = (unsigned __int8)i >> 2;
+    }
+    ++v4;
+  }
+  elem[0] = v5 == 5;
+  if ( v5 == 5 )
+    elem[0] = v6 == 3;
+  runtime_chansend1(c, elem);
+}
+```
+Look easy right? You are wrong 🤣. If you just copy and paste that code, im sure you will not get any correct solution. 
+
+![image](https://github.com/ClownCS/clowncs.github.io/assets/90112096/986e87d9-3d83-4a92-8ec0-a690ffbe0b3d)
+
+This the correct what this function does. We can implement this easily and got suitable value.
+
+```python=
+def sus(i1, i2, i3, i4, i5):
+
+    rdx = 0
+    rsi = 0
+
+    input = i1
+    while input:
+        r8 = rdx + 1
+        rdx -= 1
+        r9 = rsi + 1
+        rsi -= 1
+
+        if input & 1 != 0:
+            rdx = r8
+        if input & 2 != 0:
+            rsi = r9
+        input >>=2
+
+    input = i2
+    while input:
+        r8 = rdx + 1
+        rdx -= 1
+        r9 = rsi + 1
+        rsi -= 1
+
+        if input & 1 != 0:
+            rdx = r8
+        if input & 2 != 0:
+            rsi = r9
+        input >>=2
+
+    input = i3
+    while input:
+        r8 = rdx + 1
+        rdx -= 1
+        r9 = rsi + 1
+        rsi -= 1
+
+        if input & 1 != 0:
+            rdx = r8
+        if input & 2 != 0:
+            rsi = r9
+        input >>=2
+       
+
+    input = i4
+    while input:
+        r8 = rdx + 1
+        rdx -= 1
+        r9 = rsi + 1
+        rsi -= 1
+
+        if input & 1 != 0:
+            rdx = r8
+        if input & 2 != 0:
+            rsi = r9
+        input >>=2
+    
+    input = i5
+    while input:
+        r8 = rdx + 1
+        rdx -= 1
+        r9 = rsi + 1
+        rsi -= 1
+
+        if input & 1 != 0:
+            rdx = r8
+        if input & 2 != 0:
+            rsi = r9
+        input >>=2
+
+    
+    if rdx == 5 and rsi == 3:
+        print(chr(i1) + chr(i2) + chr(i3) + chr(i4) +chr(i5))
+
+
+for i in range(48, 58):
+    for j in range(48, 58):
+        for x in range(48, 58):
+            for y in range(48, 58):
+                for z in range(48, 58):
+                    sus(i,j,x,y,z)
+```
+
+So fourth part will be **99994**. Combine 4 parts, now we have **LARRY-77777-WVYUX-99994-**. The hardest part is comming up next, the ``main_checkKey_func5``
+
+```C=
+key_8 = key.len;
+keya = (char *)key.str;
+v23 = check;
+qmemcpy(v21, "UNL0CK", sizeof(v21));
+v3 = (char *)((__int64 (__fastcall *)(_BYTE *))loc_45E299)(v19);
+v5 = 0LL;
+while ( v5 < 6 )
+{
+v22 = v5;
+v6 = runtime_makeslice((internal_abi_Type *)&RTYPE_uint_0, 7LL, 7LL);
+v7 = v22;
+v8 = 3 * v22;
+v25[v8] = 7LL;
+v25[v8 + 1] = 7LL;
+v25[v8 - 1] = (__int64)v6;
+v5 = v7 + 1;
+v3 = keya;
+v4 = (runtime_hchan *)v23;
+key.len = key_8;
+}
+for ( i = 0LL; i < 6; ++i )
+{
+if ( !v25[3 * i] )
+  runtime_panicIndex();
+*(_QWORD *)v25[3 * i - 1] = i;
+}
+for ( j = 0LL; j < 7; ++j )
+{
+if ( (unsigned __int64)j >= v25[0] )
+  runtime_panicIndex();
+*(_QWORD *)(v24 + 8 * j) = j;
+}
+for ( k = 1LL; k < 6; ++k )
+{
+for ( m = 1LL; (__int64)m < 7; ++m )
+{
+  if ( key.len <= (unsigned __int64)(k - 1) )
+    runtime_panicIndex();
+  v13 = m - 1;
+  if ( v21[m - 1] == v3[k - 1] ) // Check each input with each string v21
+  {
+    if ( *(&v22 + 3 * k) <= v13 )
+      runtime_panicIndex();
+    if ( m >= v25[3 * k] )
+      runtime_panicIndex();
+    *(_QWORD *)(v25[3 * k - 1] + 8 * m) = *(_QWORD *)(*(_QWORD *)&v19[24 * k + 24] + 8 * m - 8); // doing A stuff
+  }
+  else
+  {
+    v14 = *(char **)&v19[24 * k + 24]; // doing B stuffs
+    if ( m >= *(&v22 + 3 * k) )
+      runtime_panicIndex();
+    v15 = v25[3 * k];
+    v16 = *(_QWORD *)&v14[8 * m];
+    v17 = (char *)v25[3 * k - 1];
+    if ( v15 <= v13 )
+      runtime_panicIndex();
+    v18 = *(_QWORD *)&v14[8 * m - 8];
+    if ( *(_QWORD *)&v17[8 * m - 8] < v16 )
+      v16 = *(_QWORD *)&v17[8 * m - 8];
+    if ( v18 < v16 )
+      v16 = v18;
+    if ( m >= v15 )
+      runtime_panicIndex();
+    *(_QWORD *)&v17[8 * m] = v16 + 1; 
+  }
+}
+}
+```
+
+After debugging and reading the code, I didn't completely understand what this function does :crying_cat_face:. But to summarizing, each input's character will be compared with v21 string, if it is the same, it will do A stuff, if not will do B stuff. So my solution will be brute-force... with the input must be a combination of ``UNL0CK`` with some characters. After brute-forcing, if you use a combination from this string ``UNL0CK1``, you will have the final answer. First, i use ``crunch`` to automatically generate combinations for me by ``crunch 5 5 UNL0CK1 > tmp.txt``. And using this script to brute force.
+
+
+```python=
+from pwn import *
+
+flag = "LARRY-77777-WVYUX-99994-"
+def send_combinations(file_name):
+    with open(file_name, 'r') as file:
+        for line in file:
+            combination = line.strip()  # 
+            payload = flag + combination
+            p = process("./main") 
+            p.recvuntil('> ')
+            p.sendline(payload)
+            l = p.recvall()
+            if b"again" not in l:
+                print(l)
+                print(combination)
+                p.interactive()
+            else:
+                p.close()
+            
+send_combinations("tmp.txt")
+```
+
+Nice the final part is **UUUCK**. So the key will be **LARRY-99935-WVYUX-99994-UUUCK**
+
+![image](https://github.com/ClownCS/clowncs.github.io/assets/90112096/4afd0aae-ff7c-4eea-96c7-1ec02afb0739)
+
+Flag: ***amateursCTF{c4nt_b3liev3_g0_ogl3_r30p3ned_CTF_sp0n50rs}***
