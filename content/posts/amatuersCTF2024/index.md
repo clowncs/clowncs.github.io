@@ -19,6 +19,7 @@ Solutions for some reverse challenges in amateursCTF 2024
 <!--more-->
 # RE
 Reverse challenges in this event are fun so i want to keep some of them on my blog.
+
 ![image](https://github.com/ClownCS/clowncs.github.io/assets/90112096/144ed917-d08a-4ada-975b-e7e9c7024748)
 
 ## typo
@@ -738,7 +739,7 @@ First time, I could solve golang reverse challenge. Btw, this challenge makes me
 
 Open bin with IDA and start analyzing, golang is so shit when it is decompiled :+1:. At first, it will take our input into ``main_checkKey`` function. In that function has more 5 ``main_checkKey_func1`` to ``main_checkKey_func5`` 💀. The nightmare has come, but we need to do this.
 
-```C=
+```C
 // main.checkKey
 bool __golang main_checkKey(string key)
 {
@@ -962,7 +963,7 @@ LABEL_6:
 
 Before talking about 5 check functions, the most important thing we need to consider is ``strings_genSplit``. During the contest, I didn't notice this so it took a long time to solve. About that function, it simply counts how many **-** in our string and separates it into 5 parts corresponding to 5 check functions. So we need 4 **-** in our string, and after that, it will go down and check each input character if they are in the range ``0->9`` and ``A-Z``. If two conditions are correct, it will go to the main function check.
 
-```C=
+```C
 v38 = strings_genSplit(key, v37, 0LL, -1LL);
 if ( v38.len != 5 )
 return 0;
@@ -1021,7 +1022,7 @@ else
 ``main_checkKey_func1`` is just compare the string with base64 encoding, we can easily get the first string is **LARRY**
 
 
-```C=
+```C
 c = (runtime_hchan *)check;
   len = key.len;
   v10.str = key.str;
@@ -1038,7 +1039,7 @@ c = (runtime_hchan *)check;
 
 ``main_checkKey_func2`` will check if our input is in range ``0->9`` and does basic compare.
 
-```C=
+```C
 while ( v3 < 5 )
 {
 if ( key.len <= (unsigned __int64)v3 )
@@ -1061,7 +1062,7 @@ runtime_chansend1((runtime_hchan *)check, elem);
 
 Part 2:
 
-```C=
+```C
 #include <stdio.h>
 int main(){
     for (int i = 48; i < 58; i++){
@@ -1082,7 +1083,7 @@ int main(){
 ```
 I will take **77777** for part 2. Next will be ``main_checkKey_func3``, this function is similar with part 2 but the most different is we need to find a string that each character is different from each one. This is because of ``runtime_mapassign()``
 
-```C=
+```C
 while ( v6 < 5 )
   {
     if ( len <= v6 )
@@ -1116,7 +1117,7 @@ while ( v6 < 5 )
 
 Part 3:
 
-```C=
+```C
 #include <stdio.h>
 
 int check_diff(int i, int j, int x, int y, int z) {
@@ -1150,7 +1151,7 @@ int main(){
 I will choose **WVYUX**. ``main_checkKey_func4`` is the tricky one, if you just read the pseudocode, you will not be able to solve this. This is the 
 pseudocode:
 
-```C=
+```C
 v4 = 0LL;
   v5 = 0LL;
   v6 = 0LL;
@@ -1183,7 +1184,7 @@ Look easy right? You are wrong 🤣. If you just copy and paste that code, im su
 
 This the correct what this function does. We can implement this easily and got suitable value.
 
-```python=
+```python
 def sus(i1, i2, i3, i4, i5):
 
     rdx = 0
@@ -1270,7 +1271,7 @@ for i in range(48, 58):
 
 So fourth part will be **99994**. Combine 4 parts, now we have **LARRY-77777-WVYUX-99994-**. The hardest part is comming up next, the ``main_checkKey_func5``
 
-```C=
+```C
 key_8 = key.len;
 keya = (char *)key.str;
 v23 = check;
@@ -1344,7 +1345,7 @@ for ( m = 1LL; (__int64)m < 7; ++m )
 After debugging and reading the code, I didn't completely understand what this function does :crying_cat_face:. But to summarizing, each input's character will be compared with v21 string, if it is the same, it will do A stuff, if not will do B stuff. So my solution will be brute-force... with the input must be a combination of ``UNL0CK`` with some characters. After brute-forcing, if you use a combination from this string ``UNL0CK1``, you will have the final answer. First, i use ``crunch`` to automatically generate combinations for me by ``crunch 5 5 UNL0CK1 > tmp.txt``. And using this script to brute force.
 
 
-```python=
+```python
 from pwn import *
 
 flag = "LARRY-77777-WVYUX-99994-"
