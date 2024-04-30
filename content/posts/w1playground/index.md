@@ -337,7 +337,7 @@ Như mọi lần thì mình sẽ bắt đầu với việc chạy thử xem file
 
 ![image](https://github.com/ClownCS/clowncs.github.io/assets/90112096/17feb8b2-ad0e-4c1b-8cf6-097f32d36676)
 
-Hmm có vẻ bị lỗi gì đó mình bắt đầu đi tìm kiếm tại sao lại bị lỗi như trên. Vậy là nó k thể đọc được file nào đó. Tới đây thì việc tiếp theo là mở ida và analyze. Các bạn hãy xài file [res.i64](/content/posts/w1playground/res.i64) vì mình đã khôi phục gần như tất cả các hàm và có comment. Vậy là chương trình cần đọc file ``censored.png`` 
+Hmm có vẻ bị lỗi gì đó mình bắt đầu đi tìm kiếm tại sao lại bị lỗi như trên. Vậy là nó k thể đọc được file nào đó. Tới đây thì việc tiếp theo là mở ida và analyze. Các bạn hãy xài file [res.i64](https://github.com/ClownCS/clowncs.github.io/blob/master/content/posts/w1playground/res.i64) vì mình đã khôi phục gần như tất cả các hàm và có comment. Vậy là chương trình cần đọc file ``censored.png`` 
 
 ![image](https://github.com/ClownCS/clowncs.github.io/assets/90112096/d26a1bc6-03f5-413d-be4a-b6094a3d32bf)
 
