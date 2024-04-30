@@ -329,6 +329,210 @@ Như thế thì ta có thể thấy đây là hệ phương trình 4 ẩn. Lúc 
 
 [script](https://drive.google.com/file/d/1s7jbRTN4VMyfspbRpqUGKtj9M-WM3WnY/view?usp=sharing)
 
+## Shadows of Encryption
+
+Một bài mới do anh **Jinn** ra nên mình quyết định sẽ update lên blog luôn vì sau này chắc hẳn cần để nhìn lại. Tải file về và nhận ra đây là rust và tệ hơn là rust bị stripped, mình như muốn treo cổ vì trước giờ mình rất yếu khi đụng golang hay rust. Nhưng chuyện gì đến cũng phải đến, lets go...
+
+Như mọi lần thì mình sẽ bắt đầu với việc chạy thử xem file làm gì.
+
+<anh>
+
+Hmm có vẻ bị lỗi gì đó mình bắt đầu đi tìm kiếm tại sao lại bị lỗi như trên. Vậy là nó k thể đọc được file nào đó. Tới đây thì việc tiếp theo là mở ida và analyze. Các bạn hãy xài file [res.i64](/content/posts/w1playground/res.i64) vì mình đã khôi phục gần như tất cả các hàm và có comment. Vậy là chương trình cần đọc file ``censored.png`` 
+
+<anh>
+
+Tạo một file ảnh ``censored.png`` bất kì ở đây mình tạo như sau
+
+<anh>
+
+Tiếp tục debug thì mình phát hiện giá trị mà mình đặt tên là ``randomkey`` luôn thay đổi và nó luôn là 16 bytes. Tới đây rồi mình đã nghĩ ngay tới đây là một dạng mã hóa kiểu dữ liệu mà đúng hơn nó sẽ là ``AES``. Tuy nhiên nó chỉ là phỏng đoán ban đầu, mình tiếp tục debug, tới hàm ``EXPANDKEY`` sau đó từ 16 bytes random đầu nó thành 176 bytes. Tới đây không nghi ngờ gì nữa đây là khúc expand key trong AES. ( Sau khi có những phỏng đoán mình đã phải dành thời gian làm cryptohack và học về AES nên wu có vẻ sẽ rất trơn trượt nhưng khi làm mình không hề như vậy =))) ) . Lúc này tưởng ngon ăn, mình tưởng bài này anh **Jinn** chắc chỉ cho AES ECB 128 thôi nhỉ?? Chạy thử và so sánh với kết quả encryption trên cyberchef với kết quả chương trình. Oh... 
+ 
+Không giống tí nào... Vậy là sao? Nếu mà vậy thì sẽ padding key ở đâu vì nó dùng ``random_chacha`` mà nhỉ? Tới đây thì mình quyết định phải rev vào core của encrypt chứ không thể như này nữa.
+
+```C
+void *__fastcall ENCRYPT(void *a1, char *expand, char *padding)
+{
+  char *v3; // rax
+  unsigned __int64 v4; // rdx
+  __int64 v5; // rdx
+  __int64 v6; // rax
+  __int64 v7; // rdx
+  char *v8; // rax
+  unsigned __int64 v9; // rdx
+  char *v11; // rax
+  unsigned __int64 v12; // rdx
+  unsigned __int64 v13; // [rsp+8h] [rbp-C0h]
+  unsigned __int64 v14; // [rsp+10h] [rbp-B8h]
+  char xor_STATE[16]; // [rsp+40h] [rbp-88h] BYREF
+  __int64 v16; // [rsp+50h] [rbp-78h]
+  __int64 v17; // [rsp+58h] [rbp-70h]
+  __int64 v18; // [rsp+60h] [rbp-68h]
+  __int64 v19; // [rsp+68h] [rbp-60h]
+  __int64 v20[3]; // [rsp+70h] [rbp-58h] BYREF
+  __int64 v21; // [rsp+88h] [rbp-40h]
+  unsigned __int64 v22; // [rsp+90h] [rbp-38h]
+  unsigned __int64 v23; // [rsp+98h] [rbp-30h]
+  __int64 v24; // [rsp+A0h] [rbp-28h]
+  __int64 v25; // [rsp+A8h] [rbp-20h]
+  char *v26; // [rsp+B0h] [rbp-18h]
+  char *v27; // [rsp+B8h] [rbp-10h]
+  __int64 v28; // [rsp+C0h] [rbp-8h]
+
+  v26 = expand;
+  v27 = padding;
+  sub_55644CDE3220(xor_STATE, (__int64)padding);
+  v16 = 0LL;
+  v17 = 4LL;
+  v3 = (char *)take_EXPANDKEY();
+  addroundkey(xor_STATE, v3, v4);               // xor state with sbox
+  v18 = 1LL;
+  v19 = 10LL;
+  v20[0] = sub_55644CDE3D80(1LL);
+  v20[1] = v5;
+  while ( 1 )
+  {
+    v6 = sub_55644CDE3D70(v20);
+    v21 = v7;
+    v20[2] = v6;
+    if ( !v6 )
+      break;
+    v14 = v21;
+    v28 = v21;
+    shift_rows(xor_STATE);                      // not that SUS
+    mix_column(xor_STATE);                      // last round skip
+    if ( !is_mul_ok(4uLL, v14) )
+      sub_55644CDE02E0((__int64)"attempt to multiply with overflow", 33LL, (__int64)&off_55644CE6FCE8);
+    v13 = 4 * v14;
+    if ( !is_mul_ok(4uLL, v14) )
+      sub_55644CDE02E0((__int64)"attempt to multiply with overflow", 33LL, (__int64)&off_55644CE6FD00);
+    if ( v13 >= 0xFFFFFFFFFFFFFFFCLL )
+      sub_55644CDE02E0((__int64)"attempt to add with overflow", 28LL, (__int64)&off_55644CE6FD18);
+    v22 = 4 * v14;
+    v23 = v13 + 4;
+    v11 = (char *)take_EXPANDKEY();             // use subkey
+    addroundkey(xor_STATE, v11, v12);
+  }
+  shift_rows(xor_STATE);
+  v24 = 40LL;
+  v25 = 44LL;
+  v8 = (char *)take_EXPANDKEY();
+  addroundkey(xor_STATE, v8, v9);
+  sub_55644CDE34B0(a1, xor_STATE);              // AES WITHOUT SUBBYTES
+  return a1;
+}
+```
+Sau khi đọc code + debug miệt mài mình khôi phục được như sau vậy là rõ rồi AES ECB without sub bytes. Vậy thì chắc chắn sẽ có cách crack nhỉ. Sau khi research và tất nhiên mình cũng hỏi các anh, các bạn chơi crypto thì mình được những link rất hữu dụng.
+
+> https://medium.com/@wrth/cracking-aes-without-any-one-of-its-operations-c42cdfc0452f
+> https://crypto.stackexchange.com/questions/20228/consequences-of-aes-without-any-one-of-its-operations
+
+Vậy nó có thể crack nhưng nhất định phải có một cặp block plain - cipher. Lúc này quay lại vấn đề làm sao để kiếm plain đây? Lúc này mình suy nghĩ là hmm nếu là file png thì nó sẽ có header bytes giống nhau vậy thì lúc này thõa với 16 bytes plaintext rồi. Header bytes: ``89 50 4E 47 0D 0A 1A 0A 00 00 00 0D 49 48 44 52``. Final script:
+
+```python
+from sage.all import *
+
+def bytes2mat(b):
+    a = []
+    for i in b:
+        tmp = bin(i)[2:].zfill(8)
+        for j in tmp:
+            a.append(int(j))
+    return Matrix(GF(2), a)
+
+def mat2bytes(m):
+    a = ""
+    for i in range(128):
+        a += str(m[0, i])
+    a = [a[i:i+8] for i in range(0, 128, 8)]
+    a = [int(i, 2) for i in a]
+    return bytes(a)
+
+I = identity_matrix(GF(2), 8)
+X = Matrix(GF(2), 8, 8)
+for i in range(7):
+    X[i, i+1] = 1
+X[3, 0] = 1
+X[4, 0] = 1
+X[6, 0] = 1
+X[7, 0] = 1
+
+C = block_matrix([
+    [X, X+I, I, I],
+    [I, X, X+I, I],
+    [I, I, X, X+I],
+    [X+I, I, I, X]
+])
+
+zeros = Matrix(GF(2), 8, 8)
+zeros2 = Matrix(GF(2), 32, 32)
+o0 = block_matrix([
+    [I, zeros, zeros, zeros],
+    [zeros, zeros, zeros, zeros],
+    [zeros, zeros, zeros, zeros],
+    [zeros, zeros, zeros, zeros]
+])
+
+o1 = block_matrix([
+    [zeros, zeros, zeros, zeros],
+    [zeros, I, zeros, zeros],
+    [zeros, zeros, zeros, zeros],
+    [zeros, zeros, zeros, zeros]
+])
+
+o2 = block_matrix([
+    [zeros, zeros, zeros, zeros],
+    [zeros, zeros, zeros, zeros],
+    [zeros, zeros, I, zeros],
+    [zeros, zeros, zeros, zeros]
+])
+
+o3 = block_matrix([
+    [zeros, zeros, zeros, zeros],
+    [zeros, zeros, zeros, zeros],
+    [zeros, zeros, zeros, zeros],
+    [zeros, zeros, zeros, I]
+])
+
+S = block_matrix([
+    [o0, o1, o2, o3],
+    [o3, o0, o1, o2],
+    [o2, o3, o0, o1],
+    [o1, o2, o3, o0]
+])
+
+M = block_matrix([
+    [C, zeros2, zeros2, zeros2],
+    [zeros2, C, zeros2, zeros2],
+    [zeros2, zeros2, C, zeros2],
+    [zeros2, zeros2, zeros2, C]
+])
+
+R = M*S
+A = S*(R**9) # sorry for the inconsistency in the variable name, this is supposed to be SA^9 that I talked about
+
+p = open("censored.png.enc", "rb").read()
+
+p2 = "89 50 4E 47 0D 0A 1A 0A 00 00 00 0D 49 48 44 52"
+
+p2 = bytes.fromhex(p2)
+ct2 = "2ff89e3a6c9a3747cab74b9300ebcdc8"
+
+ct2 = bytes.fromhex(ct2)
+p2 = bytes2mat(p2).transpose()
+ct2 = bytes2mat(ct2).transpose()
+
+K = ct2 - A * p2
+recovered_plaintext = b""
+for i in range(0, len(p), 16):
+    block = p[i:i+16]
+    block = bytes2mat(block)
+    block = (A.inverse() * (block.transpose() - K)).transpose()
+    recovered_plaintext += mat2bytes(block)
+
+open("recovered.png", "wb").write(recovered_plaintext)
+```
+
+Mình sẽ không thể solve nếu không có sự giúp đỡ của các anh, các bạn chơi crypto. Shoud out for crypto players !
 
 > Lời cuối: em xin cảm ơn anh **dream02** và anh **Jinn** vì đã tạo ra những challenge thú vị.
 
