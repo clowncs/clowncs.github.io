@@ -538,7 +538,8 @@ open("recovered.png", "wb").write(recovered_plaintext)
 
 ![image](https://github.com/ClownCS/clowncs.github.io/assets/90112096/e396ac0a-9ee8-40ab-8674-888e9d81e390)
 
-Mình sẽ không thể solve nếu không có sự giúp đỡ của các anh, các bạn chơi crypto. Shoud out for crypto players !
+Mình sẽ không thể solve nếu không có sự giúp đỡ của các anh, các bạn chơi crypto. Shout out for crypto players !
+p/s: ``https://legacy.cryptool.org/en/cto/aes-step-by-step`` mình sử dụng web này kết hợp trong lúc debug.
 
 > Lời cuối: em xin cảm ơn anh **dream02** và anh **Jinn** vì đã tạo ra những challenge thú vị.
 
