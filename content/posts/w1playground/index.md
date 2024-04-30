@@ -429,6 +429,7 @@ Sau khi đọc code + debug miệt mài mình khôi phục được như sau v�
 
 > https://medium.com/@wrth/cracking-aes-without-any-one-of-its-operations-c42cdfc0452f
 > https://crypto.stackexchange.com/questions/20228/consequences-of-aes-without-any-one-of-its-operations
+> https://hackmd.io/@vishiswoz/r10P7knwj
 
 Vậy nó có thể crack nhưng nhất định phải có một cặp block plain - cipher. Lúc này quay lại vấn đề làm sao để kiếm plain đây? Lúc này mình suy nghĩ là hmm nếu là file png thì nó sẽ có header bytes giống nhau vậy thì lúc này thõa với 16 bytes plaintext rồi. Header bytes: ``89 50 4E 47 0D 0A 1A 0A 00 00 00 0D 49 48 44 52``. Final script:
 
