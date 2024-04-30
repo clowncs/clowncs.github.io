@@ -335,19 +335,23 @@ Một bài mới do anh **Jinn** ra nên mình quyết định sẽ update lên 
 
 Như mọi lần thì mình sẽ bắt đầu với việc chạy thử xem file làm gì.
 
-<anh>
+![image](https://github.com/ClownCS/clowncs.github.io/assets/90112096/17feb8b2-ad0e-4c1b-8cf6-097f32d36676)
 
 Hmm có vẻ bị lỗi gì đó mình bắt đầu đi tìm kiếm tại sao lại bị lỗi như trên. Vậy là nó k thể đọc được file nào đó. Tới đây thì việc tiếp theo là mở ida và analyze. Các bạn hãy xài file [res.i64](/content/posts/w1playground/res.i64) vì mình đã khôi phục gần như tất cả các hàm và có comment. Vậy là chương trình cần đọc file ``censored.png`` 
 
-<anh>
+![image](https://github.com/ClownCS/clowncs.github.io/assets/90112096/d26a1bc6-03f5-413d-be4a-b6094a3d32bf)
 
 Tạo một file ảnh ``censored.png`` bất kì ở đây mình tạo như sau
 
-<anh>
+![image](https://github.com/ClownCS/clowncs.github.io/assets/90112096/ce18247d-e8ea-46a2-be34-96bb76aacba8)
 
 Tiếp tục debug thì mình phát hiện giá trị mà mình đặt tên là ``randomkey`` luôn thay đổi và nó luôn là 16 bytes. Tới đây rồi mình đã nghĩ ngay tới đây là một dạng mã hóa kiểu dữ liệu mà đúng hơn nó sẽ là ``AES``. Tuy nhiên nó chỉ là phỏng đoán ban đầu, mình tiếp tục debug, tới hàm ``EXPANDKEY`` sau đó từ 16 bytes random đầu nó thành 176 bytes. Tới đây không nghi ngờ gì nữa đây là khúc expand key trong AES. ( Sau khi có những phỏng đoán mình đã phải dành thời gian làm cryptohack và học về AES nên wu có vẻ sẽ rất trơn trượt nhưng khi làm mình không hề như vậy =))) ) . Lúc này tưởng ngon ăn, mình tưởng bài này anh **Jinn** chắc chỉ cho AES ECB 128 thôi nhỉ?? Chạy thử và so sánh với kết quả encryption trên cyberchef với kết quả chương trình. Oh... 
- 
+
+![image](https://github.com/ClownCS/clowncs.github.io/assets/90112096/20f15cf7-5c28-4046-96fb-b9dd16d7e714)
+
 Không giống tí nào... Vậy là sao? Nếu mà vậy thì sẽ padding key ở đâu vì nó dùng ``random_chacha`` mà nhỉ? Tới đây thì mình quyết định phải rev vào core của encrypt chứ không thể như này nữa.
+
+![image](https://github.com/ClownCS/clowncs.github.io/assets/90112096/0912786e-42eb-4e54-8c93-a5be2dcdbf53)
 
 ```C
 void *__fastcall ENCRYPT(void *a1, char *expand, char *padding)
@@ -531,6 +535,8 @@ for i in range(0, len(p), 16):
 
 open("recovered.png", "wb").write(recovered_plaintext)
 ```
+
+![image](https://github.com/ClownCS/clowncs.github.io/assets/90112096/e396ac0a-9ee8-40ab-8674-888e9d81e390)
 
 Mình sẽ không thể solve nếu không có sự giúp đỡ của các anh, các bạn chơi crypto. Shoud out for crypto players !
 
