@@ -26,9 +26,32 @@ A small game for warm-up.
 Author: dream02
 
 ### Solution:
-Đây là bài warmup nên chỉ cần nhìn kĩ là có thể giải được. Script của mình (pass giải nén là flag bài 2):
+Đây là bài warmup nên chỉ cần nhìn kĩ là có thể giải được. Script của mình:
 
-[script](https://drive.google.com/file/d/1s7jbRTN4VMyfspbRpqUGKtj9M-WM3WnY/view?usp=sharing)
+```python
+import struct
+
+flag_enc = [0] * 86
+cnt =0
+rand_thing = [0x160e5b19, 0x67e9d105, 0x2e4a4f3a, 0x16b29bd3, 0x40969be4, 0x6f073098, 0x2a84b45d, 0x2065397c, 0x44aa7467, 0x350dc573, 0x431da129, 0x73220c12, 0x7878aa21, 0x7583038e, 0x8d47d33, 0x37134ed3, 0x68a7ee11, 0x17ae84e0, 0x25052828, 0x3153e88e, 0x426c6991, 0x6c130059, 0x45e69a01, 0x15057c4f, 0x7daea889, 0x59ecfe7b, 0x3a1d6705, 0x21081ec8, 0xfb63fd1, 0x5a4d3fad, 0x47644ec4, 0x771890c9, 0x6b948f4f, 0x79ef9e28, 0x4f0236dd, 0x31154387, 0x631004b3, 0x2d56fba9, 0x5789c355, 0x7165e499, 0x1caf2de2, 0x64055501, 0x3dee7436, 0x13edc81e, 0x11ac700c, 0x504a70e3, 0x167cd925, 0x252b409f, 0x3ed8ab8f, 0x5d9ee3c, 0xf86247f, 0x1b682edf, 0x51806b8a, 0x13889b53, 0x10c1b49d, 0x40c38862, 0x46ad0a1e, 0x6194ab2f, 0x2971c45c, 0x34c19984, 0x2b1d48b2, 0xd332270, 0xc93b900, 0x6cc85ef4, 0x1d0b3c83, 0x41df1296, 0x6a39490e, 0x692952b9, 0x40433d3c, 0x2580412c, 0x376d6485, 0x61e6f660, 0x497a82e9, 0x169d64d2, 0x55d59814, 0x52c80a72, 0x56debfeb, 0x6317de1e, 0x168d3af4, 0x3367e472, 0x142063f3, 0x4c111f7f, 0x834aeee, 0x10d30af1, 0x73cf152e]
+
+target = [243, 17, 143, 220, 220, 75, 177, 0, 142, 223, 45, 89, 149, 83, 7, 96, 89, 41, 18, 74, 83, 225, 135, 7, 96, 181, 89, 159, 29, 46, 141, 197, 144, 20, 141, 97, 89, 109, 27, 247, 168, 95, 227, 215, 164, 109, 162, 94, 177, 255, 226, 225, 141, 161, 209, 103, 94, 243, 6, 16, 0, 54, 123, 164, 55, 135, 227, 135, 6, 89, 186, 123, 57, 190, 16, 115, 77, 225, 243, 179, 82, 65, 58, 179, 54]
+with open('flag.enc', 'rb') as file:
+    while True:
+        data = file.read(4)
+        if not data:
+            break
+        result = struct.unpack('<I', data)[0]
+        flag_enc[cnt] = result
+        cnt+=1
+
+rand = [0] * 85
+for i in range(85):
+    rand[i] = flag_enc[i+1] ^ rand_thing[i]
+
+for i in range(len(rand)):
+    print(chr(rand[i] ^ target[i]),end="")
+```
 
 ## EBPF
 Note: Run with sudo (not infected).
@@ -325,9 +348,38 @@ r4 &= 255
 -> (((((r1 * r3) ^ (r1 + r2)) ^ ((( (r0 + r2) << 4 ) & 255) | (((r0+r2) & 255) >> 4)))) & 255) // third element
 ```
 
-Như thế thì ta có thể thấy đây là hệ phương trình 4 ẩn. Lúc này quá rõ ràng rồi ta chỉ cần xài z3 để recover mảng enc 4 kí tự một. Đây là script của mình (pass giải nén là flag bài này):
+Như thế thì ta có thể thấy đây là hệ phương trình 4 ẩn. Lúc này quá rõ ràng rồi ta chỉ cần xài z3 để recover mảng enc 4 kí tự một. Đây là script của mình:
 
-[script](https://drive.google.com/file/d/1s7jbRTN4VMyfspbRpqUGKtj9M-WM3WnY/view?usp=sharing)
+```python
+from z3 import *
+from pwn import *
+e = ELF("./ebpf-w1playground")
+data = e.read(0x6020, 0xe0)[::4]
+
+flag = b""
+while data:
+    results = data[:4]
+    s = Solver()
+    r0 = BitVec("a", 32)
+    r1 = BitVec("b", 32)
+    r2 = BitVec("c", 32)
+    r3 = BitVec("d", 32)
+
+    for x in [r0,r1,r2,r3]:
+        s.add(x >= 0x20)
+        s.add(x < 0x80)
+
+    s.add(((r0 ^ r1) + (r2 & r3)) & 0xff == results[0])
+    s.add(((((r0 - r2) ^ (r2 * r3)) ^ ((((r0 + r1) << 5 ) & 255) | (((r0+r1) & 255) >> 3))) & 255) == results[1])
+    s.add((((((r1 * r3) ^ (r1 + r2)) ^ ((( (r0 + r2) << 4 ) & 255) | (((r0+r2) & 255) >> 4)))) & 255) == results[2])
+    s.add(((r2 ^ r3) + (r0 ^ r1)) & 0xff == results[3])
+
+    if s.check() == sat:
+        flag += bytes([s.model()[i].as_long() for i in [r0,r1,r2,r3]])
+    data = data[4:]
+
+print(flag)
+```
 
 ## Shadows of Encryption
 
@@ -540,6 +592,7 @@ open("recovered.png", "wb").write(recovered_plaintext)
 ![image](https://github.com/ClownCS/clowncs.github.io/assets/90112096/e396ac0a-9ee8-40ab-8674-888e9d81e390)
 
 Mình sẽ không thể solve nếu không có sự giúp đỡ của các anh, các bạn chơi crypto. Shout out for crypto players !
+
 p/s: ``https://legacy.cryptool.org/en/cto/aes-step-by-step`` mình sử dụng web này kết hợp trong lúc debug.
 
 > Lời cuối: em xin cảm ơn anh **dream02** và anh **Jinn** vì đã tạo ra những challenge thú vị.
