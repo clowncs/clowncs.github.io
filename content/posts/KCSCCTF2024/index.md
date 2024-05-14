@@ -22,7 +22,7 @@ Solutions for some reverse challenges in KCSC CTF 2024
 # RE
 Mình có xin được đề KCSC nên sẽ bắt đầu ngồi làm từ lúc giải bắt đầu cho tới khi end xem mình có thể làm được bao nhiêu câu.
 
-## Fk3
+## F@k3
 Tải chương trình về và đọc thử hàm main.
 
 ```C=
@@ -1133,6 +1133,7 @@ if solver.check() == sat:
     print("".join(original_data_values))
 ```
 p/s: Khi ngồi viết wu thì mình mới biết là ăn fake flag T_T
+
 Tuy nhiên mình dính chưởng ngay fake flag :))). Mình ngồi rev lại xem có bỏ sót khúc nào không và yeah mình đã tìm thấy.
 
 ```C
