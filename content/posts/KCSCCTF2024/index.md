@@ -489,8 +489,7 @@ Tới đây có hai cách một là code chương trình nhỏ tương tác vớ
 
 ![image](https://hackmd.io/_uploads/r1jrHmg7A.png)
 
-:::spoiler `KCSC.dll`
-
+``KCSC.dll``
 ```C
 int __cdecl HelloWorld(char *Str1)
 {
@@ -747,8 +746,6 @@ LABEL_41:
   return 0;
 }
 ```
-:::
-
 Công đoạn tốn thời gian với mình nhất là rev và debug thuật toán này. Mình sẽ không giải thích quá nhiều. Đây là code reimplement của mình
 
 ```python
