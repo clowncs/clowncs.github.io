@@ -1132,7 +1132,7 @@ if solver.check() == sat:
     original_data_values = [chr(model[data[i]].as_long()) for i in range(len(cmp))]
     print("".join(original_data_values))
 ```
-
+p/s: Khi ngồi viết wu thì mình mới biết là ăn fake flag T_T
 Tuy nhiên mình dính chưởng ngay fake flag :))). Mình ngồi rev lại xem có bỏ sót khúc nào không và yeah mình đã tìm thấy.
 
 ```C
@@ -1408,5 +1408,5 @@ while solver.check() == sat:
 
 Flag: ``KCSC{kcscctf_2024_1_l0v3_y0u_@RSeqTke3a5v3D}``  
 
-Trên là 3 câu mình giải được trong khoảng thời gian giải diễn ra. Còn câu cuối ``p2p`` mình chưa hoàn thành được T_T. Cảm ơn author của KCSC đã ra những bài thú vị. 
+> Cảm ơn author của KCSC đã ra những bài thú vị <3 
 
