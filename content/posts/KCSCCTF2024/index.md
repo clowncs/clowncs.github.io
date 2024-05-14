@@ -1,13 +1,13 @@
 ---
 weight: 1
 title: "KCSC CTF 2024"
-date: 2024-05-14T14:30:00+07:00
-lastmod: 2024-05-14T14:30:00+07:00
+date: 2024-05-14
+lastmod: 2024-05-14
 draft: false
 author: "ClownCS"
 authorLink: "https://clowncs.github.io"
 description: "Solutions for some reverse challenges in KCSC CTF 2024"
-tags: ["RE", "2024"]
+tags: ["RE", "Wargame","2024"]
 categories: ["Writeups"]
 
 lightgallery: true
@@ -16,6 +16,7 @@ toc:
   enable: true
 ---
 Solutions for some reverse challenges in KCSC CTF 2024
+
 <!--more-->
 
 # RE
