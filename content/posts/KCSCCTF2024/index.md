@@ -7,7 +7,7 @@ draft: false
 author: "ClownCS"
 authorLink: "https://clowncs.github.io"
 description: "Solutions for some reverse challenges in KCSC CTF 2024"
-tags: ["RE", "Wargame","2024"]
+tags: ["RE", "2024"]
 categories: ["Writeups"]
 
 lightgallery: true
