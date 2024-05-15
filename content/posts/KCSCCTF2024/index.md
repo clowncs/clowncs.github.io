@@ -81,7 +81,7 @@ int __fastcall main(int argc, const char **argv, const char **envp)
 
 Nhìn sơ qua thì có thể thấy nó nhận flag của chúng ta sau đó mã hóa RC4 chuỗi ``Str`` sau đó compare với flag bằng hàm ``lstrcmpA``. Và tất nhiên sẽ không có gì để nói nếu bài này lại dễ như vậy. Tuy nhiên khi thử debug thì mình nhận ra mình nhận fake flag. 
 
-![image](https://hackmd.io/_uploads/r1bLAzg7A.png)
+![image](https://github.com/ClownCS/clowncs.github.io/assets/90112096/fd1169fa-466a-49c3-8e6f-bb749a4ea93f)
 
 Anti debug ? Lúc này mình xref trace ngược về những hàm mà call chuỗi ``Str`` tức key. 
 
@@ -196,8 +196,7 @@ __int64 __fastcall riel_func(__int64 a1, __int64 a2)
 ```
 Lúc này thì mọi thứ đã rõ. Bản thân hàm này luôn ``return 0``. Đó là lí do vì sao khi debug nếu nhập input gì cũng correct. Hiểu được chương trình làm gì mình debug và lấy flag thôi.
 
-![image](https://hackmd.io/_uploads/HyYdkQe70.png)
-
+![image](https://github.com/ClownCS/clowncs.github.io/assets/90112096/769169ce-20b7-4232-9601-5581f354a272)
 
 Flag: ``KCSC{1t_co5ld_be_right7_fla9_here_^.^@@}``
 
@@ -477,17 +476,17 @@ int __cdecl main(int argc, const char **argv, const char **envp)
 
 Có vẻ chỉ là một bài flag checker bình thường. Tuy nhiên hàm check flag đâu ? Mình qua ``Strings`` thử xem có tìm được gì không và mình bắt gặp những chuỗi base64. Sau khi decode và đổi tên lại mình có được như sau.
 
-![image](https://hackmd.io/_uploads/HyA-VQl70.png)
+![image](https://github.com/ClownCS/clowncs.github.io/assets/90112096/0b4a88cc-86be-4e93-af51-c54259478436)
 
 **DLL INJECTION**
 
 Có thể thấy được chương trình này sử dụng ``KCSC.dll`` để check flag. Trace ngược lại chỗ gọi chuỗi này đặt breakpoint. Ta sẽ thấy lấy được file ``KCSC.dll`` ở path ``C:\Users\Peter\AppData\Local\Temp\KCSC.dll``
 
-![image](https://hackmd.io/_uploads/SJcA4XlQR.png)
+![image](https://github.com/ClownCS/clowncs.github.io/assets/90112096/a7bc3f40-a2be-4426-a5d2-04bb825a6cf9)
 
 Tới đây có hai cách một là code chương trình nhỏ tương tác với file dll hoặc cứ debug tiếp. Ở đây mình chọn cách debug tiếp 
 
-![image](https://hackmd.io/_uploads/r1jrHmg7A.png)
+![image](https://github.com/ClownCS/clowncs.github.io/assets/90112096/c595335f-4383-40c8-a6b4-acde8eb9a80f)
 
 ``KCSC.dll``
 ```C
