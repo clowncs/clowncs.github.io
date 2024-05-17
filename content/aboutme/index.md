@@ -13,7 +13,7 @@ math:
 ## Some Background Informations
 Hello, I'm **ClownCS** 👋
 
-A student and a CTF player who is interested in Reverse Engineering, playing for [41_dun7_kn0w](https://ctftime.org/team/271196)
+A student and a CTF player who is interested in Reverse Engineering, playing for [thefwncrew](https://ctftime.org/team/271196)
 
 ---
 
