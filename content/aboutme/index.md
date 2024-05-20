@@ -2,7 +2,7 @@
 title: "About"
 date: January 2, 2023
 draft: false
-description: "About Me"
+description: "About"
 
 lightgallery: true
 
@@ -11,7 +11,7 @@ math:
 ---
 
 ## Some Background Informations
-Hello, I'm **ClownCS** 👋
+Hello, I'm **xPeters** 👋
 
 A student and a CTF player who is interested in Reverse Engineering, playing for [thefwncrew](https://ctftime.org/team/271196)
 
@@ -24,4 +24,4 @@ A student and a CTF player who is interested in Reverse Engineering, playing for
 ---
 ## Contact Me
 
-You can contact me via [Email](mailto:hieunguyendev2104@gmail.com), [Twitter](https://twitter.com/@peterclowncs) or [Github](https://github.com/ClownCS).
+You can contact me via [Email](mailto:hieunguyendev2104@gmail.com), [Twitter](https://twitter.com/@xpeters1337) or [Github](https://github.com/xpeters1337).
