@@ -4,8 +4,8 @@ title: "amateursCTF 2024"
 date: 2024-04-09T14:30:00+07:00
 lastmod: 2024-04-09T14:30:00+07:00
 draft: false
-author: "ClownCS"
-authorLink: "https://clowncs.github.io"
+author: "xPeters"
+authorLink: "https://xpeters1337.github.io"
 description: "Solutions for some reverse challenges in amateursCTF 2024"
 tags: ["RE", "2024"]
 categories: ["Writeups"]
