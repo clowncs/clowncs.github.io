@@ -11,7 +11,7 @@ math:
 ---
 
 ## Some Background Informations
-Hello, I'm **xPeters** 👋
+Hello, I'm **Peter** 👋
 
 A student and a CTF player who is interested in Reverse Engineering, playing for [thefwncrew](https://ctftime.org/team/271196)
 
