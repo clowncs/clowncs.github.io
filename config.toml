@@ -1,10 +1,10 @@
-baseURL = "https://xpeters1337.github.io/"
+baseURL = "https://clowncs.github.io/"
 
 # Change the default theme to be use when building the site with Hugo
 theme = "LoveIt"
 
 # website title
-title = "xPeters"
+title = "ClownCS"
 
 # language code ["en", "zh-CN", "fr", "pl", ...]
 languageCode = "en"
@@ -32,9 +32,9 @@ ignoreErrors = ["error-remote-getjson", "error-missing-instagram-accesstoken"]
 
 # Author config
 [author]
-  name = "xPeters"
+  name = "ClownCS"
   email = "hieunguyendev2104@gmail.com"
-  link = "https://xpeters.github.io/"
+  link = "https://clowncs.github.io/"
 
 # Menu config
 [menu]
@@ -77,7 +77,7 @@ ignoreErrors = ["error-remote-getjson", "error-missing-instagram-accesstoken"]
   #  date format
   dateFormat = "2006-01-02"
   # website title for Open Graph and Twitter Cards
-  title = "xPeters"
+  title = "ClownCS"
   # website description for RSS, SEO, Open Graph and Twitter Cards
   description = "$ no rev no life 👾"
   # website images for Open Graph and Twitter Cards
@@ -187,7 +187,7 @@ ignoreErrors = ["error-remote-getjson", "error-missing-instagram-accesstoken"]
       # URL of avatar shown in home page
       avatarURL = "https://preview.redd.it/3h5bkbrb2gx71.jpg?width=1080&crop=smart&auto=webp&s=51b13753a9f51972ae9c32fd46119544e920321f"
       #  title shown in home page (HTML format is supported)
-      title = "xPeters"
+      title = "ClownCS"
       # subtitle shown in home page (HTML format is supported)
       subtitle = "$ no rev no life 👾"
       # whether to use typeit animation for subtitle
@@ -207,7 +207,7 @@ ignoreErrors = ["error-remote-getjson", "error-missing-instagram-accesstoken"]
 
   # Social config about the author
   [params.social]
-    GitHub = "xpeters1337"
+    GitHub = "clowncs"
     Discord = "885180981437403146"
     Email = "hieunguyendev2104@gmail.com"
     RSS = true # 

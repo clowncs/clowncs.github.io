@@ -4,8 +4,8 @@ title: "KCSC CTF 2024"
 date: 2024-05-14
 lastmod: 2024-05-14
 draft: false
-author: "xPeters"
-authorLink: "https://xpeters1337.github.io"
+author: "clowncs"
+authorLink: "https://clowncs.github.io"
 description: "Solutions for some reverse challenges in KCSC CTF 2024"
 tags: ["RE", "2024"]
 categories: ["Writeups"]

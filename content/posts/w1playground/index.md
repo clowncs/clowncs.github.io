@@ -4,10 +4,10 @@ title: "W1 Playground"
 date: 2024-04-30
 lastmod: 2024-04-30
 draft: false
-author: "xPeters"
-authorLink: "https://xpeters1337.github.io"
+author: "clowncs"
+authorLink: "https://clowncs.github.io"
 description: "Solutions for all reverse challenges in W1"
-tags: ["RE", "Wargame","2024"]
+tags: ["RE", "Crypto", "Wargame","2024"]
 categories: ["Writeups"]
 
 lightgallery: true

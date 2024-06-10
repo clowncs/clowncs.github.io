@@ -4,8 +4,8 @@ title: "PicoCTF 2024"
 date: 2024-03-26T14:30:00+07:00
 lastmod: 2024-03-26T14:30:00+07:00
 draft: true
-author: "xPeters"
-authorLink: "https://xpeters1337.github.io"
+author: "clowncs"
+authorLink: "https://clowncs.github.io"
 description: "Solutions for all reverse challenges in PicoCTF"
 tags: ["RE", "Wargame", "2024", "Weekly"]
 categories: ["Writeups"]
