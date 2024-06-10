@@ -29,7 +29,7 @@ Solutions for some challenges in R3CTF
 > After investigation, R3 Inc's security department discovered that...pdf, also from the president's office, may have been compromised on the ransomware computer. Colleagues are requested to self-examine their own computer security protection and confidentiality measures. If any abnormality is discovered, please report it to the Security Department in a timely manner.
 
 
-![image](https://hackmd.io/_uploads/r1hi3m4B0.png)
+![image](https://github.com/clowncs/clowncs.github.io/assets/90112096/2cd1f599-3261-45f6-a411-725a1cec7835)
 
 
 This contest has so damn hard binary challenges so i couldn't solve any of them but the forensics chall that require reverse + crypto so i give it a shot. My foren teammate has dumped for me a exe file (seems the ransomware) and .yr encrypted file. My job begins.
@@ -734,7 +734,7 @@ _QWORD *__fastcall coree(__int64 a1, _QWORD *a2, __int64 a3)
 
 When i debugged and examined with each step, i recognize the key expanse seems not correct so i decided to open a ticket and asked author. 
 
-![image](https://hackmd.io/_uploads/ryVjz4VrR.png)
+![image](https://github.com/clowncs/clowncs.github.io/assets/90112096/85d25629-fae2-4bc7-b7fe-8b3a3509527b)
 
 That's the key expanse seems not standard, i tried to understand what the hell it did but it was 4 a.m in my country so i was really tired... After the contest i decided to ask author what did he actually do and i got this.
 
@@ -942,8 +942,7 @@ for i in tqdm(range(len(to_be_decrypt) // 16 - 1)):
 open('jne.png', 'wb').write(cipher.unpad(plaintext))
 ```
 
-![image](https://hackmd.io/_uploads/By4p4EESR.png)
-
+![image](https://github.com/clowncs/clowncs.github.io/assets/90112096/f18e3528-392e-49b6-88a4-26fc77497836)
 
 This challenge is really fun XD.
 
