@@ -24,4 +24,4 @@ A student and a CTF player who is interested in Reverse Engineering, playing for
 ---
 ## Contact Me
 
-You can contact me via [Email](mailto:hieunguyendev2104@gmail.com), [Twitter](https://twitter.com/@peterclowncs) or [Github](https://github.com/clowncs).
+You can contact me via [Email](mailto:hieunguyendev2104@gmail.com), [Twitter](https://twitter.com/@peter_clowncs) or [Github](https://github.com/clowncs).
