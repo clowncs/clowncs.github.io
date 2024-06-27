@@ -13,7 +13,7 @@ math:
 ## Some Background Informations
 Hello, I'm **Peter** 👋
 
-A student and a CTF player who is interested in Reverse Engineering, playing for [thefwncrew](https://ctftime.org/team/271196)
+A student and a CTF player who is interested in Reverse Engineering, playing for [r3kapig](https://ctftime.org/team/58979) and [thefwncrew](https://ctftime.org/team/271196)
 
 ---
 
