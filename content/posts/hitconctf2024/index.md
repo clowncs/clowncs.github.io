@@ -601,7 +601,7 @@ v77 = (alloc::raw_vec::RawVec<u64,alloc::alloc::Global> *)((char *)v77 + 1);// s
 
 Which is ``(0x56361E32 ^ v79) % 0xE53ACEB5``. This is my bruteforce code to find v79 a.k.a power.
 
-```C
+```C++
 #include <cstdint>
 #include <iostream>
 
