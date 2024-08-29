@@ -3,7 +3,7 @@ weight: 1
 title: "HackTheBox Cyber Apocalypse 2024"
 date: 2024-03-16T14:30:00+07:00
 lastmod: 2024-03-16T14:30:00+07:00
-draft: true
+draft: false
 author: "clowncs"
 authorLink: "https://clowncs.github.io"
 description: "Solutions for some reverse challenges in HTB"

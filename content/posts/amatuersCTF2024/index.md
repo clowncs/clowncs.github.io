@@ -3,7 +3,7 @@ weight: 1
 title: "amateursCTF 2024"
 date: 2024-04-09T14:30:00+07:00
 lastmod: 2024-04-09T14:30:00+07:00
-draft: true
+draft: false
 author: "clowncs"
 authorLink: "https://clowncs.github.io"
 description: "Solutions for some reverse challenges in amateursCTF 2024"
