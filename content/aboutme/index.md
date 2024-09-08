@@ -10,18 +10,7 @@ math:
   enable: true
 ---
 
-## Some Background Informations
-Hello, I'm **Peter** 👋
+## About
+Hello, I'm **Peter** a.k.a **clowncs** - absolutely a noob still trying to improve skills everyday.
 
-A student and a CTF player who is interested in Reverse Engineering, playing for [r3kapig](https://ctftime.org/team/58979) and [thefwncrew](https://ctftime.org/team/271196)
-
----
-
-- 📖 Studying in University of Information Technology - VNUHCM
-- 🗺 Living in Thu Duc, Ho Chi Minh City
-- ☕ Addicted to coffee
-
----
-## Contact Me
-
-You can contact me via [Email](mailto:hieunguyendev2104@gmail.com), [Twitter](https://twitter.com/@peter_clowncs) or [Github](https://github.com/clowncs).
+A CTF player who is interested in Reverse Engineering, member of [r3kapig](https://ctftime.org/team/58979) and [thefwncrew](https://ctftime.org/team/271196)
